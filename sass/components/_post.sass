@@ -1,0 +1,53 @@
+.timeline
+   &__content
+      display: flex
+      flex-direction: column
+
+      max-width: 960px
+      margin: 0 auto
+      padding: 20px
+      background-color: #cccccc3f
+
+   &__heading
+      font-size: 24px
+      margin-bottom: 20px
+      border-bottom: 1px solid #ccc
+      padding-bottom: 10px
+
+   &__post-list, .post
+      margin-bottom: 20px
+      padding: 10px
+      border-radius: .5rem
+
+      .post
+         display: flex
+         flex-direction: column
+
+         box-shadow: $shadow-primary
+         background-color: white
+
+      &__title
+         font-size: 20px
+         margin-bottom: 10px
+
+      &__meta
+         font-size: 14px
+         color: #666
+         margin-bottom: 10px
+
+      &__author
+         color: $color-secondary
+         text-decoration: none
+         &:hover
+            text-decoration: underline
+
+      &__content
+         display: grid
+         grid-template: 1fr 1fr
+
+         font-size: 16px
+
+      &__image
+         max-width: 50rem
+         border-radius: 5px
+         justify-self: center

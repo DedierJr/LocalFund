@@ -1,0 +1,19 @@
+<%- include('../cabecalho.ejs') %>
+<main class="timeline">
+    <div class="timeline__content">
+        <div class="timeline__post-list">
+            <h2 class="timeline__heading">Postagens</h2>
+            <% Posts.forEach(function(post){ %>
+                <article class="post">
+                    <h3 class="post__title"><%=post.titulo %></h3>
+                    <p class="post__meta"><%=moment(post.data).format('DD/MM/YYYY') %> por <a href="#" class="post__author"><%=post.usuario.nome %></a></p>
+                    <div class="post__content">
+                        <p class="post__text"><%=post.texto %></p>
+                        <img src="/fotos/<%=post.foto %>" class="post__image" alt="Foto do Post">
+                    </div>
+                </article>
+            <% }) %>
+        </div>
+    </div>
+</main>
+<%- include('../rodape.ejs') %>

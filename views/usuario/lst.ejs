@@ -1,0 +1,39 @@
+<!-- /LocalFund/views/usuario/lst.ejs -->
+<%- include('../cabecalho.ejs') %>
+<main class="usuarios">
+    <form method="post" class="usuarios__form">
+        <div class="usuarios__form-group">
+            <input name="pesquisar" type="text" class="usuarios__form-input" id="exampleFormControlInput1" placeholder="Pesquisar">
+        </div>
+    </form>
+    <table class="usuarios__table tabela">
+        <tr class="usuarios__table-header">
+            <th class="usuarios__table-header-cell">Id</th>
+            <th class="usuarios__table-header-cell">Nome</th>
+            <th class="usuarios__table-header-cell">Email</th>
+            <th class="usuarios__table-header-cell">Senha</th>
+            <th class="usuarios__table-header-cell">Foto</th>
+            <th class="usuarios__table-header-cell">Editar</th>
+            <th class="usuarios__table-header-cell">Deletar</th>
+        </tr>
+        <% Usuarios.forEach(function(usuario){ %>
+            <tr class="usuarios__table-row">
+                <td class="usuarios__table-cell"><%=usuario._id %></td>
+                <td class="usuarios__table-cell"><%=usuario.nome %></td>
+                <td class="usuarios__table-cell"><%=usuario.email %></td>
+                <td class="usuarios__table-cell"><%=usuario.senha %></td>
+                <td class="usuarios__table-cell">
+                    <img class="usuarios__table-image" src="/fotos/<%=usuario.foto %>" alt="Foto do usuário">
+                </td>
+                <td class="usuarios__table-cell">
+                    <a href="/admin/usuario/edt/<%=usuario._id %>" class="usuarios__table-link">Editar</a>
+                </td>
+                <td class="usuarios__table-cell">
+                    <a href="/admin/usuario/del/<%=usuario._id %>" class="usuarios__table-link">Excluir</a>
+                </td>
+            </tr>
+        <% }) %>
+    </table>
+</main>
+
+<%- include('../rodape.ejs') %>
