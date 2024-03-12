@@ -1,0 +1,16 @@
+<!-- /LocalFund/views/usuario/profile.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Perfil do Usuário</title>
+</head>
+<body>
+    <h1>Perfil do Usuário</h1>
+    <div>
+        <p>Nome: <%= usuario.nome %></p>
+        <p>Email: <%= usuario.email %></p>
+        <p>Foto:</p>
+        <img src="/uploads/<%= usuario.foto %>" alt="Foto do usuário" style="max-width: 200px;">
+    </div>
+</body>
+</html>

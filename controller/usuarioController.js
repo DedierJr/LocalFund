@@ -1,4 +1,3 @@
-// /LocalFund/controller/usuarioController.js
 const Usuario = require("../model/Usuario");
 
 function abreadd(req,res){
@@ -62,6 +61,20 @@ function edt(req,res){
     })
 }
 
+async function exibirUsuario(req, res) {
+    try {
+        const usuarioId = req.params.id;
+        const usuario = await Usuario.findById(usuarioId);
+        if (!usuario) {
+            return res.status(404).json({ message: 'Usuário não encontrado' });
+        }
+        res.render('usuario', { usuario: usuario });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: 'Erro interno do servidor' });
+    }
+}
+
 module.exports = {
     abreadd,
     add,
@@ -69,5 +82,6 @@ module.exports = {
     filtro,
     abreedt,
     edt,
-    del
-}
+    del,
+    exibirUsuario
+};

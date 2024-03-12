@@ -2,16 +2,16 @@
 const mongoose = require('../config/conexao');
 
 const postSchema = new mongoose.Schema({
-    titulo:  String,
+    titulo: String,
     texto: String,
-    data: Date,
+    data: { type: Date, default: Date.now },
     foto: String,
     usuario: {
         type: mongoose.Schema.Types.ObjectId,
-        ref:'usuario'
+        ref: 'usuario'
     }
 });
 
-const post = mongoose.model('post', postSchema);
+const Post = mongoose.model('Post', postSchema);
 
-module.exports = post
+module.exports = Post;

@@ -12,5 +12,7 @@ router.post('/post/lst',postController.filtro)
 router.get('/post/edt/:id',postController.abreedt)
 router.post('/post/edt/:id', upload.single('foto'), postController.edt)
 router.get('/post/del/:id',postController.del)
+router.post('/post/upvote/:id', postController.upvote);
+
 
 module.exports = router

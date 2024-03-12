@@ -61,6 +61,23 @@ function edt(req,res){
     })
 }
 
+async function upvote(req, res) {
+    try {
+        const postId = req.params.id;
+        const post = await Post.findById(postId);
+        if (!post) {
+            return res.status(404).json({ message: 'Post not found' });
+        }
+        post.votos += 1;
+        await post.save();
+        return res.status(200).json(post);
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: 'Internal server error' });
+    }
+}
+
+
 module.exports = {
     abreadd,
     add,
@@ -68,5 +85,6 @@ module.exports = {
     filtro,
     abreedt,
     edt,
-    del
+    del,
+    upvote
 }
