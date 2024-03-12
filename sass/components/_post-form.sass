@@ -12,33 +12,42 @@
     box-shadow: $shadow-primary
     color: $color-primary
 
-label
-    font-size: 2.1rem
-    font-weight: 600
-    display: block
-    margin-bottom: 5px
+    label
+        font-size: 2.1rem
+        font-weight: 600
+        display: block
+        margin-bottom: 5px
 
-input#foto
-    opacity: 0
-    height: 0
-    margin-bottom: -2rem
+        &[for="foto"]::after
+            content: url('../../assets/img/picture.svg')
+            width: 3rem
+            height: 3rem
 
-input, textarea, select
-    width: 100%
-    padding: 10px
-    margin-bottom: 10px
-    border: none
-    border-radius: 1.4rem
-    resize: none
-    box-shadow: inset  $shadow-primary
+    input#foto
+        opacity: 0
+        height: 0
+        margin-bottom: -2rem
 
-input[type="submit"]
-    padding: 10px 20px
-    background-color: #007bff
-    color: #fff
-    border: none
-    border-radius: 5px
-    cursor: pointer
+    object
+        width: 2rem
+        height: 2rem
 
-    &:hover
-        background-color: #0056b3
+    input, textarea, select
+        width: 100%
+        padding: 10px
+        margin-bottom: 10px
+        border: none
+        border-radius: 1.4rem
+        resize: none
+        box-shadow: inset  $shadow-primary
+
+    input[type="submit"]
+        padding: 10px 20px
+        background-color: #007bff
+        color: #fff
+        border: none
+        border-radius: 5px
+        cursor: pointer
+
+        &:hover
+            background-color: #0056b3

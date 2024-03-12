@@ -1,3 +1,5 @@
+const mongoose = require('../config/conexao');
+
 const usuarioSchema = new mongoose.Schema({
     nome: {
         type: String,
@@ -20,3 +22,7 @@ const usuarioSchema = new mongoose.Schema({
         required: true
     }
 });
+
+const usuario = mongoose.model('usuario', usuarioSchema);
+
+module.exports = usuario

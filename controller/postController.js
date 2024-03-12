@@ -1,4 +1,3 @@
-// /LocalFund/controller/postController.js
 const Post = require("../model/Post");
 const Usuario = require("../model/Usuario");
 

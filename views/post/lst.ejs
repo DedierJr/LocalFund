@@ -1,35 +1,33 @@
 <!-- /LocalFund/views/post/lst.ejs -->
 <%- include('../cabecalho.ejs') %>
-<main>
+<main class="main">
     <form method="post" class="form_lst">
-        <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Pesquisar</label>
-            <input name="pesquisar" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Pesquisar">
+        <div class="form_lst__search">
+            <input name="pesquisar" type="text" class="form_lst__input" id="exampleFormControlInput1" placeholder="Pesquisar">
         </div>
-        <input class="btn btn-primary" type="submit" value="Pesquisar">
     </form>
-    <table class="tabela">
+    <table class="table">
         <tr>
-            <th>Id</th>
-            <th>Titulo</th>
-            <th>Data</th>
-            <th>Foto</th>
-            <th>Editar</th>
-            <th>Deletar</th>
+            <th class="table__header">Id</th>
+            <th class="table__header">Titulo</th>
+            <th class="table__header">Data</th>
+            <th class="table__header">Foto</th>
+            <th class="table__header">Editar</th>
+            <th class="table__header">Deletar</th>
         </tr>
         <% Posts.forEach(function(post){ %>
-            <tr>
-                <td><%=post._id %></td>
-                <td><%=post.titulo %></td>
-                <td><%=post.data %></td>
-                <td>
-                    <img style="max-width: 50px;" src="/fotos/<%=post.foto %>" alt="Foto do Post">
+            <tr class="table__row">
+                <td class="table__cell"><%=post._id %></td>
+                <td class="table__cell"><%=post.titulo %></td>
+                <td class="table__cell"><%=post.data %></td>
+                <td class="table__cell">
+                    <img class="table__image" src="/fotos/<%=post.foto %>" alt="Foto do Post">
                 </td>
-                <td>
-                    <a href="/admin/post/edt/<%=post._id %>">Editar</a>
+                <td class="table__cell">
+                    <a href="/admin/post/edt/<%=post._id %>" class="table__link">Editar</a>
                 </td>
-                <td>
-                    <a href="/admin/post/del/<%=post._id %>">Excluir</a>
+                <td class="table__cell">
+                    <a href="/admin/post/del/<%=post._id %>" class="table__link">Excluir</a>
                 </td>
             </tr>
         <% }) %>

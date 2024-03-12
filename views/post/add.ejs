@@ -4,21 +4,16 @@
     <form method="post" enctype="multipart/form-data" class="form_post">
         <label class="form_label" for="titulo">Título</label>
         <input class="form_input" type="text" id="titulo" name="titulo" placeholder="Digite o título do post.">
-        <br><br>
         <label class="form_label" for="texto">Texto</label>
         <textarea class="form_textarea" id="texto" name="texto" placeholder="Digite o texto do post"></textarea>
-        <br><br>
         <label class="form_label" for="foto">Foto</label>
-        <object type="image/svg+xml" data="../../assets/img/picture-svgrepo-com.svg"></object>
         <input class="form_input" type="file" id="foto" name="foto">
-        <br><br>
         <label class="form_label" for="usuario">Usuário</label>
         <select class="form_select" id="usuario" name="usuario" aria-label="Selecione um usuário!">
           <% Usuarios.forEach(function(usuario){ %>
           <option value="<%=usuario._id %>"><%=usuario.nome %></option>
           <% }) %>
         </select>
-        <br><br>
         <input type="submit" value="Adicionar" class="form_submit">
     </form>
 </main>
