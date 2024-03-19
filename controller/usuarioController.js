@@ -1,87 +1,99 @@
 const Usuario = require("../model/Usuario");
+const Post = require("../model/Post");
 
-function abreadd(req,res){
-    res.render('usuario/add')
+function abreadd(req, res) {
+  res.render("usuario/add");
 }
 
-function add(req,res){
-    if (!req.file) {
-        console.log("Erro: nenhum arquivo enviado com a requisição.");
-        return res.status(400).send("Erro: nenhum arquivo enviado com a requisição.");
+function add(req, res) {
+  if (!req.file) {
+    console.log("Erro: nenhum arquivo enviado com a requisição.");
+    return res
+      .status(400)
+      .send("Erro: nenhum arquivo enviado com a requisição.");
+  }
+
+  let usuario = new Usuario({
+    nome: req.body.nome,
+    email: req.body.email,
+    senha: req.body.senha,
+    foto: req.file.filename,
+  });
+
+  usuario.save(function (err) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.redirect("/admin/usuario/lst");
     }
-
-    let usuario = new Usuario({
-        nome: req.body.nome,
-        email: req.body.email,
-        senha: req.body.senha,
-        foto: req.file.filename
-    })
-
-    usuario.save(function(err){
-        if(err){
-            console.log(err);
-        }else{
-            res.redirect('/admin/usuario/lst')
-        }
-    });
+  });
 }
 
-function list(req,res){
-    Usuario.find({},function(err,usuarios){
-        res.render('usuario/lst',{Usuarios:usuarios})
-    })
+function list(req, res) {
+  Usuario.find({}, function (err, usuarios) {
+    res.render("usuario/lst", { Usuarios: usuarios });
+  });
 }
 
-function filtro(req,res){
-    Usuario.find({nome: new RegExp(req.body.pesquisar, 'i')},function(err,usuarios){
-        res.render('usuario/lst',{Usuarios:usuarios})
-    })
+function filtro(req, res) {
+  Usuario.find(
+    { nome: new RegExp(req.body.pesquisar, "i") },
+    function (err, usuarios) {
+      res.render("usuario/lst", { Usuarios: usuarios });
+    }
+  );
 }
 
-function del(req,res){
-    Usuario.findByIdAndDelete(req.params.id,function(err,usuario){
-        res.redirect('/admin/usuario/lst')
-    })
+function del(req, res) {
+  Usuario.findByIdAndDelete(req.params.id, function (err, usuario) {
+    res.redirect("/admin/usuario/lst");
+  });
 }
 
-function abreedt(req,res){
-    Usuario.findById(req.params.id,function(err,usuario){
-        res.render('usuario/edt',{'Usuario':usuario})
-    })
+function abreedt(req, res) {
+  Usuario.findById(req.params.id, function (err, usuario) {
+    res.render("usuario/edt", { Usuario: usuario });
+  });
 }
 
-function edt(req,res){
-    Usuario.findByIdAndUpdate(req.params.id,{
-        nome: req.body.nome,
-        email: req.body.email,
-        senha: req.body.senha,
-        foto: req.file.filename
-    },function(err,usuario){
-        res.redirect('/admin/usuario/lst')
-    })
+function edt(req, res) {
+  Usuario.findByIdAndUpdate(
+    req.params.id,
+    {
+      nome: req.body.nome,
+      email: req.body.email,
+      senha: req.body.senha,
+      foto: req.file.filename,
+    },
+    function (err, usuario) {
+      res.redirect("/admin/usuario/lst");
+    }
+  );
 }
 
 async function exibirUsuario(req, res) {
-    try {
-        const usuarioId = req.params.id;
-        const usuario = await Usuario.findById(usuarioId);
-        if (!usuario) {
-            return res.status(404).json({ message: 'Usuário não encontrado' });
-        }
-        res.render('usuario', { usuario: usuario });
-    } catch (error) {
-        console.error(error);
-        return res.status(500).json({ message: 'Erro interno do servidor' });
+  try {
+    const usuarioId = req.params.id;
+    const usuario = await Usuario.findById(usuarioId);
+    const posts = await Post.find({ usuario: usuario._id });
+    console.log(posts);
+    if (!usuario) {
+      return res.status(404).json({ message: "Usuário não encontrado" });
     }
+    res.render("usuario/profile", { usuario: usuario, Posts: posts });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Erro interno do servidor" });
+  }
 }
 
 module.exports = {
-    abreadd,
-    add,
-    list,
-    filtro,
-    abreedt,
-    edt,
-    del,
-    exibirUsuario
+  abreadd,
+  add,
+  list,
+  filtro,
+  abreedt,
+  edt,
+  del,
+  exibirUsuario,
 };

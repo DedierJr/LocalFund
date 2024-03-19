@@ -1,0 +1,28 @@
+.user
+    display: grid
+    grid-template-rows: 1fr
+    grid-template-columns: 30rem 1fr
+
+    width: 100vw
+    height: 100vh
+
+
+    &__info
+        display: flex
+        flex-direction: column
+        justify-items: center
+
+        padding: 10px
+        margin-top: 20px
+
+        .user__foto
+            width: 30rem
+            height: 30rem
+            border-radius: 50%
+            border: 3px solid $color-tertiary
+
+        .user__heading
+            color: $color-tertiary
+            margin: 0 2rem
+            text-align: center
+

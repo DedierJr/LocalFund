@@ -1,16 +1,20 @@
 <!-- /LocalFund/views/usuario/profile.ejs -->
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Perfil do Usuário</title>
-</head>
-<body>
-    <h1>Perfil do Usuário</h1>
-    <div>
-        <p>Nome: <%= usuario.nome %></p>
-        <p>Email: <%= usuario.email %></p>
-        <p>Foto:</p>
-        <img src="/uploads/<%= usuario.foto %>" alt="Foto do usuário" style="max-width: 200px;">
-    </div>
-</body>
-</html>
+<%- include('../cabecalho.ejs') %>
+    <section class="user">
+        <div class="user__info">
+            <img src="/fotos/<%= usuario.foto %>" alt="Foto de perfil de <%= usuario.nome %>" class="user__foto">
+            <h2 class="user__heading"><%= usuario.nome %></h2>
+        </div>
+        <% Posts.forEach(function(post){ %>
+            <article class="post">
+                <h3 class="post__title"><%=post.titulo %></h3>
+                <p class="post__meta"><%=moment(post.data).format('DD/MM/YYYY') %> por <a href="/admin/usuario/<%= post.usuario._id %>" class="post__author"><%=post.usuario.nome %></a></p>
+                <div class="post__content">
+                    <p class="post__text"><%=post.texto %></p>
+                    <img src="/fotos/<%=post.foto %>" class="post__image" alt="Foto do Post">
+                </div>
+            </article>
+        <% }) %>
+    </section>
+    
+<%- include('../rodape.ejs') %>
