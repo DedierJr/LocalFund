@@ -1,20 +1,21 @@
 <!-- /LocalFund/views/usuario/profile.ejs -->
 <%- include('../cabecalho.ejs') %>
     <section class="user">
-        <div class="user__info">
-            <img src="/fotos/<%= usuario.foto %>" alt="Foto de perfil de <%= usuario.nome %>" class="user__foto">
-            <h2 class="user__heading"><%= usuario.nome %></h2>
+        <div class="sidebar">
+            <div class="user__info">
+                <img src="/fotos/<%= usuario.foto %>" alt="Foto de perfil de <%= usuario.nome %>" class="user__foto">
+                <h2 class="user__heading"><%= usuario.nome %></h2>
+            </div>
         </div>
+        <article class="user-timeline">
         <% Posts.forEach(function(post){ %>
-            <article class="post">
-                <h3 class="post__title"><%=post.titulo %></h3>
-                <p class="post__meta"><%=moment(post.data).format('DD/MM/YYYY') %> por <a href="/admin/usuario/<%= post.usuario._id %>" class="post__author"><%=post.usuario.nome %></a></p>
-                <div class="post__content">
-                    <p class="post__text"><%=post.texto %></p>
-                    <img src="/fotos/<%=post.foto %>" class="post__image" alt="Foto do Post">
+                <div class="post">
+                    <h3 class="post__title"><%=post.titulo %></h3>
+                    <p class="post__meta"><%=moment(post.data).format('DD/MM/YYYY') %></p>
+                        <p class="post__text"><%=post.texto %></p>
+                        <img src="/fotos/<%=post.foto %>" class="post__image" alt="Foto do Post">
                 </div>
+                <% }) %>
             </article>
-        <% }) %>
-    </section>
-    
+    </section> 
 <%- include('../rodape.ejs') %>

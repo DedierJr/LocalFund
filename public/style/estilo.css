@@ -25,6 +25,8 @@ main {
   align-items: center;
   justify-items: center;
   flex-direction: column;
+  position: relative;
+  top: 17rem;
   height: 100%;
 }
 
@@ -68,6 +70,8 @@ strong {
   width: 100%;
   border-bottom: 0.1rem solid white;
   background-color: #232A42;
+  position: fixed;
+  z-index: 999;
 }
 .header .heading-1 {
   font-size: 3.8rem;
@@ -220,9 +224,10 @@ footer a:hover {
   height: 100vh;
 }
 .user__info {
-  display: flex;
-  flex-direction: column;
-  justify-items: center;
+  position: fixed;
+  top: 15rem;
+  left: 0;
+  width: 100%;
   padding: 10px;
   margin-top: 20px;
 }
@@ -236,6 +241,39 @@ footer a:hover {
   color: #525252;
   margin: 0 2rem;
   text-align: center;
+  transform: translateX(-43rem);
+}
+.user__timeline {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.user .post {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 1.4rem 1.45rem 1.5rem 0.5rem rgba(0, 0, 0, 0.05);
+  background-color: white;
+  padding: 3rem;
+  margin: 3rem;
+}
+.user .post__title {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.user .post__meta {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 10px;
+}
+.user .post__content {
+  display: grid;
+  grid-template: 1fr 1fr;
+  font-size: 16px;
+}
+.user .post__image {
+  max-width: 50rem;
+  border-radius: 5px;
+  justify-self: center;
 }
 
 .main {
@@ -290,6 +328,12 @@ footer a:hover {
 .table__link {
   text-decoration: none;
   color: blue;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
 }
 
 .btn {
